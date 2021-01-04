@@ -42,7 +42,7 @@ covid_df2['Population'] = covid_df2['Population'].astype('int64')
 covid_df2['Datetime'] = covid_df2['Datetime'].astype('datetime64')
 covid_df2 = covid_df2.drop_duplicates(subset='Location')
 covid_df2 = covid_df2.drop(covid_df2.index[[0,1,2,3,4,5,6]]).reset_index(drop=True)
-server,db = 'DESKTOP-39G9CQC','covid_19_db'
+server,db = 'SERVER_NAME','covid_19_db'
 engine = sa.create_engine(f'mssql+pyodbc://{server}/{db}?Trusted_Connection=yes&Driver=ODBC Driver 17 for SQL Server')
 con = engine.connect()
 covid_df2.to_sql('tbl_covid_worldometer',if_exists='append',index=None,con=con)
